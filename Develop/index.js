@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
 
-var inquire = require('inquire');
+var inquirer = require('inquirer');
 
 // TODO: Create an array of questions for user input
 
