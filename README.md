@@ -1,6 +1,5 @@
 # readme-generator
   ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/acoleman37/readme-creator?style=flat&logo=appveyor)
-  ![badge](https://img.shields.io/badge/license-no license-blue)
 
   ## Description
   
