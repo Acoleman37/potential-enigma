@@ -20,52 +20,49 @@ function renderLicenseSection(license) {
 }
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  
-  const {tableofcontents, tests, features, credits, ...otherData} = data;
-  return `# ${otherData.title}
-  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${otherData.username}/${otherData.repoName}?style=flat&logo=appveyor)
-  ![badge](https://img.shields.io/badge/license-${renderLicenseBadge(otherData.license)}-blue)
+function generateMarkdown(answers) {
+  return `
+<h1 align="center">${answers.projectTitle} 👋</h1>
 
-  ## Description
-  
-  ${otherData.description}
+![badge](https://img.shields.io/badge/license-${answers.license}-brightgreen)<br />
 
-  ## Installation
+## Description
+🔍 ${answers.description}
 
-  ${otherData.installation}
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 
-  ## Usage
+## Installation
+💾 ${answers.installation}
 
-  ${otherData.usage}
+## Usage
+💻 ${answers.usage}
 
-  ## Questions
+## License
+![badge](https://img.shields.io/badge/license-${answers.license}-brightgreen)
+<br />
+This application is covered by the ${answers.license} license. 
 
-  ${otherData.questions} </br>
-    
-  GitHub: https://github.com/${otherData.username} </br>
-  Email: ${otherData.email}
+## Contributing
+👪 ${answers.contributing}
 
-  ## Tests
+## Tests
+✏️ ${answers.tests}
 
-  ${tests}
+## Questions
+✋ ${answers.questions}<br />
+<br />
+Find me on GitHub: [${answers.username}](https://github.com/${answers.username})<br />
+<br />
+✉️ Email me with any questions: ${answers.email}<br /><br />
 
-  ## Features
-
-  ${features}
-
-  ## Contributing
-
-  ${otherData.contribution}
-
-  ## Credits
-
-  ${credits}
-
-  ## License
-
-  This project was made with the ${otherData.license} license.
-
+This README was generated with ❤️ by [Alec D. Coleman]
   `;
 }
 

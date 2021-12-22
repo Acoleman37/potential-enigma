@@ -1,172 +1,88 @@
 // TODO: Include packages needed for this application
 
-const inquirer = require('inquirer');
-const fs = require('fs');
-const generateMarkdown = require('./Develop/utils/generateMarkdown');
-
+const fs = require("fs");
+const util = require("util");
+const inquirer = require("inquirer");
+const generateReadme = require('./Develop/utils/generateMarkdown');
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // TODO: Create an array of questions for user input
 
-const questions = () => {
-
+function promptUser(){
     return inquirer.prompt([
         {
-            type: `input`,
-            name: `username`,
-            message: `Please enter your GitHub username. (Required)`,
-            // validate messages require the user to answer and the prompt will not continue otherwise
-            validate: usernameInput => {
-                if (usernameInput) {
-                    return true;
-                } else {
-                    console.log("Please enter your username!");
-                    return false;
-                } 
-            }
+            type: "input",
+            name: "projectTitle",
+            message: "What is the project title?",
         },
         {
-            type: `input`,
-            name: `email`,
-            message: `Please enter your email address for user questions. (Required)`,
-            validate: emailInput => {
-                if (emailInput) {
-                    return true;
-                } else {
-                    console.log("Please enter your email!");
-                    return false;
-                } 
-            }
+            type: "input",
+            name: "description",
+            message: "Write a brief description of your project: "
         },
         {
-            type: `input`,
-            name: `repoName`,
-            message: `Please enter the repo name for your project. (Required)`,
-            validate: repoNameInput => {
-                if (repoNameInput) {
-                    return true;
-                } else {
-                    console.log("Please enter the repo name for your project!");
-                    return false;
-                } 
-            }
+            type: "input",
+            name: "installation",
+            message: "Describe the installation process if any: ",
         },
         {
-            type: `input`,
-            name: `title`,
-            message: `What is the title of your project? (Required)`,
-            validate: titleInput => {
-                if (titleInput) {
-                    return true;
-                } else {
-                    console.log("Please enter the title of your project!");
-                    return false;
-                } 
-            }
+            type: "input",
+            name: "usage",
+            message: "What is this project usage for?"
         },
         {
-            type: `input`,
-            name: `description`,
-            message: `Please enter a description for your project.`
+            type: "list",
+            name: "license",
+            message: "Chose the appropriate license for this project: ",
+            choices: [
+                "Apache",
+                "Academic",
+                "GNU",
+                "ISC",
+                "MIT",
+                "Mozilla",
+                "Open"
+            ]
         },
         {
-            type: `confirm`,
-            name: `confirmTable`,
-            message: `Would you like to add a table of contents?`,
-            default: false
+            type: "input",
+            name: "contributing",
+            message: "Who are the contributors of this projects?"
         },
         {
-            type: `checkbox`,
-            name: `tableofcontents`,
-            message: `Please select which sections you wish to have in your table of contents.`,
-            choices: [`Description`, `Installation`, `Usage`, `Tests`, `Features`, `Contributing`, `Credits`, `License`],
-            when: ({ confirmTable }) => confirmTable
+            type: "input",
+            name: "tests",
+            message: "Is there a test included?"
         },
         {
-            type: `input`,
-            name: `installation`,
-            message: `Please provide the installation instructions for your project.`
+            type: "input",
+            name: "questions",
+            message: "What do I do if I have an issue? "
         },
         {
-            type: `input`,
-            name: `questions`,
-            message: `Please provide instructions for the questions section`
+            type: "input",
+            name: "username",
+            message: "Please enter your GitHub username: "
         },
         {
-            type: `input`,
-            name: `credits`,
-            message: `Please enter any contributors you would to credit. Please include their GitHub link as well as their name.`
-        },
-        {
-            type: `input`,
-            name: `contribution`,
-            message: `Add any contribution guidelines you have for your project.`
-        },
-        {
-            type: `input`,
-            name: `tests`,
-            message: `Please enter test instructions for your project.`
-        },
-        {
-            type: `input`,
-            name: `features`,
-            message: `Please add any features you plan to add in the future.`
-        },
-        {
-            type: `list`,
-            name: `license`,
-            message: `Please select the license you would like to use.`,
-            choices: ['agpl', 'apache', 'mit', 'no license'],
+            type: "input",
+            name: "email",
+            message: "Please enter your email: "
         }
-    ])
-}
+    ]);
+} 
 
-// TODO: Create a function to write README file
-const writeFile = fileContent => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/generated-README.md', fileContent, err => {
-            if (err) {
-                reject(err);
-                return;
-            }
-
-            resolve({
-                ok: true,
-                message: 'File created!'
-            });
-        });
-    });
-};
-
-
-// TODO: Create a function to initialize app
-
-function writeToFile(fileContent) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile("./develop/dist/readme.md", fileContent, err => {
-            if (err) {
-                reject(err);
-                return;
-            }
-            resolve ({
-                ok: true,
-                message: "ReadMe created!"
-            });
-        });
-    });
-};
-
-// TODO: Function call to initialize app
-
-questions()
-    
-    .then(generateMarkdown)
-    .then(pageMarkdown => {
-        console.log("Readme being created, please wait.");
-        return writeToFile(pageMarkdown);
-    })
-    .then(writeFileResponse =>{
-        console.log(("Readme Generated in the dist folder!"));
-    })
-    .catch(err => {
+async function init() {
+    try {
+        // Ask user questions and generate responses
+        const answers = await promptUser();
+        const generateContent = generateReadme(answers);
+        // Write new README.md to dist directory
+        await writeFileAsync('./Develop/dist/readme.md', generateContent);
+        console.log('✔️  Successfully wrote to readme.md');
+    } catch(err) {
         console.log(err);
-    })
+    }
+}
+  
+init();  

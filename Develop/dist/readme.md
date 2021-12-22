@@ -1,44 +1,43 @@
-# readme-generator
-  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/acoleman37/readme-creator?style=flat&logo=appveyor)
-  ![badge](https://img.shields.io/badge/license-no license-blue)
 
-  ## Description
-  
-  The project will help a user generate a README without having to worry about applying proper mark down syntax. This README generator will allow the user to answer a series of specific questions and create a professional complete README based on their responses. It will take a couple minutes and provide the developer with the ability to make their project complete and more professional, increasing the likely hood that someone will want to use their app over similar apps without a README.
+<h1 align="center">your-personalized-readme 👋</h1>
 
-  ## Installation
+![badge](https://img.shields.io/badge/license-MIT-brightgreen)<br />
 
-  clone the repository to your local machine and open it in vs code.  Make sure you have inquirer installed by running the command "npm install inquirer" in the terminal. Then run the command "node index.js" to start the prompt of questions.
+## Description
+🔍 Every good project needs a quality README with information about the app - what the app is for, how to use the app, how to install it, how to report issues, and how to make contributions so that other developers are more likely to use and contribute to the success of the project. This is a command-line application that runs with Node.js that dynamically generates a README.md file based on input about your project.
 
-  ## Usage
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 
-  undefined
+## Installation
+💾 To generate your own README, git clone the repo down to your local so you have the Node project on your local. Run npm install in order to install the following npm package dependencies as specified in the package.json: inquirer will prompt you for your inputs from the command line. The application will start by running node index.js in the command line. Answer the prompts in your command line to generate the README. After answering all the prompts, your README file will be named 'README.md' and will be ready for you at the root of the repo.
 
-  ## Questions
+## Usage
+💻 Here is the product usage:
 
-  All questions must be answered </br>
-    
-  GitHub: https://github.com/acoleman37 </br>
-  Email: aleccoleman123@yahoo.com
+## License
+![badge](https://img.shields.io/badge/license-MIT-brightgreen)
+<br />
+This application is covered by the MIT license. 
 
-  ## Tests
+## Contributing
+👪 Here are the contributors:
 
-  None
+## Tests
+✏️ Here is the test:
 
-  ## Features
+## Questions
+✋ Reach out to my email below:<br />
+<br />
+Find me on GitHub: [Acoleman37](https://github.com/Acoleman37)<br />
+<br />
+✉️ Email me with any questions: Aleccoleman123@yahoo.com<br /><br />
 
-  None Available
-
-  ## Contributing
-
-  None
-
-  ## Credits
-
-  None
-
-  ## License
-
-  This project was made with the no license license.
-
+_This README was generated with ❤️ by [Alec D. Coleman]
   
