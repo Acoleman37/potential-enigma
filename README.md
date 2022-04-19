@@ -36,7 +36,6 @@ The README has some automatically generated badges for your repo courtesy of shi
 
 ## Usage 
 
-![Gif demo of README-generator](readme-demo.gif)
 
 When you run `node index.js`, the application uses the `inquirer` package to prompt you in the command line with a series of questions about your GitHub and about your project.
 
@@ -67,8 +66,6 @@ MIT License
 ---
 
 ## Questions?
-
-<img src="https://avatars3.githubusercontent.com/u/61371242?v=4" alt="Alec Coleman, Full-Stack Web Developer" width="40%" />
 
 
 If you utilize this app to generate a README for your project, I'd love to see. Feel free to contact me with examples or any questions via the information below:
