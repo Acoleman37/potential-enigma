@@ -1,82 +1,78 @@
-
+# README.md Generator: Node.js and ES6+
 
 ## Description 
+  
+*The what, why, and how:* 
+  
+Every good project needs a quality README with information about the app - what the app is for, how to use the app, how to install it, how to report issues, and how to make contributions so that other developers are more likely to use and contribute to the success of the project. 
 
-Your GitHub profile is an extremely important aspect of your public identity as a developer. A well-crafted one allows you to show off your work to other developers as well as potential employers. An important component of your GitHub profile—and one that many new developers often overlook—is the README.md file.
-
-The quality of a README often differentiates a good project from a bad project. A good one takes advantage of the opportunity to explain and showcase what your application does, justify the technologies used, and even talk about some of the challenges you faced and features you hope to implement in the future. A good README helps you stand out among the large crowd of developers putting their work on GitHub.
-
-There's no one right way to structure a good README. There is one very wrong way, however, and that is to not include a README at all or to create a very anemic one. This guide outlines a few best practices. As you progress in your career, you will develop your own ideas about what makes a good README.
-
-At a minimum, your project README needs a title and a short description explaining the what, why, and how. What was your motivation? Why did you build this project? (Note: The answer is not "Because it was a homework assignment.") What problem does it solve? What did you learn? What makes your project stand out?
-
-Lastly, if your project is deployed, include a link to the deployed application here.
-
-If you're new to Markdown, read the GitHub guide on [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
-
-If you need an example of a good README, check out [the VSCode repository](https://github.com/microsoft/vscode).
+This is a command-line application that runs with Node.js that dynamically generates a README.md file based on input about your project. Check out the [`ExampleREADME.md`](https://github.com/acoleman37/readme-generator/blob/master/ExampleREADME.md) in this repo as an example. 
 
 
-## Table of Contents (Optional)
-
-If your README is very long, add a table of contents to make it easy for users to find what they need.
-
+## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
-* [Credits](#credits)
+* [Methodology](#methodology)
 * [License](#license)
-
+  
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+To generate your own README, `git clone` the repo down to your local so you have the Node project on your local.
+
+Run `npm install` in order to install the following npm package dependencies as specified in the `package.json`:
+
+  * [`inquirer`](https://www.npmjs.com/package/inquirer) will prompt you for your inputs from the command line.
+  * [`axios`](https://www.npmjs.com/package/axios) will fetch your info from the GitHub API.
+
+The application will start by running `node index.js` in the command line.
+
+Answer the prompts in your command line to generate the README.
+
+After answering all the prompts, your README file will be named 'ExampleREADME.md' and will be ready for you at the root of the repo.
+
+The README has some automatically generated badges for your repo courtesy of shields.io and will include your profile picture & email from GitHub.
 
 
 ## Usage 
 
-Provide instructions and examples for use. Include screenshots as needed.
+![Gif demo of README-generator](readme-demo.gif)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+When you run `node index.js`, the application uses the `inquirer` package to prompt you in the command line with a series of questions about your GitHub and about your project.
 
-```md
-![alt text](assets/images/screenshot.png)
-```
+The application then takes your responses and uses `axios` to fetch your GitHub profile from the [GitHub API](https://developer.github.com/v3/), including your GitHub profile picture (avatar) and email.
+From there, the application will generate markdown and a table of contents for the README conditionally based on your responses to the Inquirer prompts (so, if you don't answer the optional questions, such as Installation, an Installation section will not be included in your README). The README will also include badges for your GitHub repo.
+
+Finally, `fs.writeFile` is used to generate your project's README.md file. Check out the [`ExampleREADME.md`](https://github.com/acoleman37/readme-generator/blob/master/ExampleREADME.md) in this repo as an example on the final output. 
+
+The lorem ipsum is generated thanks to [Social Good Ipsum](http://socialgoodipsum.com/#/).
 
 
-## Credits
+## Methodology
 
-List your collaborators, if any, with links to their GitHub profiles.
+The application utilizes modularization by separating the GitHub API call and generation of the markdown into separate modules: `api.js` and `generateMarkdown.js`, respectively, inside the `utils` folder.
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+The application also utilizes, as much as possible, syntax and paradigms introduced in ES6 and beyond, including:
 
-If you followed tutorials, include links to those here as well.
+- Arrow functions, 
+- `const`, `let`, 
+- Template literals, and
+- `async/await` to handle `inquirer`, `axios`, and `fs.writeFile` promises.
 
 
 ## License
 
-The last section of a good README is a license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/)
-
+MIT License
 
 ---
 
-🏆 The sections listed above are the minimum for a good README, but your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+## Questions?
 
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
-
-Badges aren't _necessary_, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
+<img src="https://avatars3.githubusercontent.com/u/61371242?v=4" alt="Alec Coleman, Full-Stack Web Developer" width="40%" />
 
 
-## Features
+If you utilize this app to generate a README for your project, I'd love to see. Feel free to contact me with examples or any questions via the information below:
 
-If your project has a lot of features, consider adding a heading called "Features" and listing them there.
+GitHub: [@acoleman37](https://api.github.com/users/acoleman37)
 
-
-## Contributing
-
-If you created an application or package and would like other developers to contribute it, you will want to add guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them.
+Email: aleccoleman37@gmail.com
